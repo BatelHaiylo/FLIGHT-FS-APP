@@ -9,4 +9,4 @@ export default function StyledCard({children}) {
       </CardContent>
     </Card>
   );
-}
+};
