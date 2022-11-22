@@ -1,22 +1,33 @@
+import dotenv from 'dotenv';
+dotenv.config();
 import express from 'express';
 const app = express();
-// import bodyParser from 'body-parser';
-import  './DB/db.js'
 import cors from 'cors';
+// import  './DB/db.js'
+import mongoose from "mongoose";
+
+const DBConnection = process.env.LOCAL_CONNECTION_STRING;
+
+mongoose
+  .connect(DBConnection)
+  .then(() => console.log(`Server running on port: ${process.env.PORT}`))
 
 const PORT = process.env.PORT || 3001;
 
-// app.use(express.json({extended: true}));
-// app.use(express.urlencoded({extended: true}));
-// app.use(bodyParser.json({limit: "30mb", extended: true}));
-// app.use(bodyParser.urlencoded({limit: "30mb", extended: true}));
+import {flightsRouter} from './routers/flights-router.js'
+
+app.use(express.json({extended: true}));
+app.use(express.urlencoded({extended: true}));
 app.use(cors());
-app.use(express.json())
+
+app.use('/flights',flightsRouter)
+
 
 app.get('/', (req,res)=>{ 
     res.send("server is working")
 });
 
 app.listen(PORT, ()=>{
+    console.log(process.env.LOCAL_CONNECTION_STRING)
     console.log(`server is listening in port ${PORT}`)
 });
