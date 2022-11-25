@@ -1,4 +1,4 @@
-import {AirlinesModel} from '../model/airline_scheme.js';
+import {AirlinesModel} from '../model/airline_schema.js';
 
 export const getAirlines = async(req, res) => {
     await AirlinesModel.find().then((result) => {

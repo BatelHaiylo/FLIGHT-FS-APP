@@ -1,4 +1,4 @@
-import {StatesModal} from '../model/States_Scheme.js';
+import {StatesModal} from '../model/States_Schema.js';
 
 export const getStates = async(req, res) => {
     await StatesModal.find().then((result) => {

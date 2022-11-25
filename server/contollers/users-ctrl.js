@@ -1,4 +1,4 @@
-import {UsersModal} from '../model/user_scheme.js';
+import {UsersModal} from '../model/user_schema.js';
 
 export const getUsers = async(req, res) => {
     await UsersModal.find().then((result) => {
