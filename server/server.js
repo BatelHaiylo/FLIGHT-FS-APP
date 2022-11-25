@@ -14,13 +14,19 @@ mongoose
 
 const PORT = process.env.PORT || 3001;
 
-import {flightsRouter} from './routers/flights-router.js'
+import {flightsRouter} from './routers/flights-router.js';
+import {airlinesRouter} from './routers/airlines-router.js';
+import {usersRouter} from './routers/users-router.js';
+import {statesRouter} from './routers/states-router.js';
 
 app.use(express.json({extended: true}));
 app.use(express.urlencoded({extended: true}));
 app.use(cors());
 
-app.use('/flights',flightsRouter)
+app.use('/flights',flightsRouter);
+app.use('/airlines', airlinesRouter);
+app.use('/states',statesRouter)
+app.use('/users',usersRouter)
 
 
 app.get('/', (req,res)=>{ 
