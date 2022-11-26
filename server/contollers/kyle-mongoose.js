@@ -159,4 +159,15 @@ async function eighthQueryToUser(){
         console.log(user.nameEmail)
     }catch(e){console.log(e.message)};
 }
-eighthQueryToUser()
+// eighthQueryToUser()
+
+//9
+async function ninthQueryToUser(){
+    try{
+        const user = await UserModal.findOne({ name: "Kyle", email: "test@test.com"})
+        console.log(user)
+        await user.save()
+        console.log(user)
+    }catch(e){console.log(e.message)};
+}
+ninthQueryToUser()

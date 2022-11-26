@@ -74,4 +74,15 @@ UserSchema.virtual('nameEmail').get(function(){
     return `${this.name} <${this.email}>`
 })
 
+///middleware///
+UserSchema.pre('save', function(next){
+    this.updateAt = Date.now()
+    next()
+})
+
+UserSchema.post('save', function(doc,next){
+    doc.sayHi()
+    next()
+})
+
 export const UserModal = mongoose.model("User", UserSchema);
