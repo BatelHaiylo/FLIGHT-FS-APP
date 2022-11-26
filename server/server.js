@@ -6,6 +6,8 @@ import cors from 'cors';
 // import  './DB/db.js'
 import mongoose from "mongoose";
 
+import './contollers/kyle-mongoose.js'
+
 const DBConnection = process.env.LOCAL_CONNECTION_STRING;
 
 mongoose
