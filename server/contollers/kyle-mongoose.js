@@ -24,7 +24,7 @@ async function run() {
 //make sure we await that
 //the create method does the same as creating a User instance and using the save methode just shorter
 async function secondRun() {
-  await UserModal.create({ name: "Kyle", age: 26 });
+  await UserModal.create({ name: "Kyle", age: 26, email: "test@test.com" });
   console.log(User);
 }
 // secondRun();
@@ -71,5 +71,92 @@ async function cleanAddToUser(){
         console.log(user);
     }catch(e){console.log(e.message)};
 }
-cleanAddToUser()
+// cleanAddToUser()
 
+
+///query///
+//1
+async function firstQueryToUser(){
+    try{
+        const user = await (await UserModal.where("age").gt("12"))
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// firstQueryToUser()
+
+//2
+async function secondeQueryToUser(){
+    try{
+        const user = await UserModal.where("name").equals("Kyle").remove()
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// secondeQueryToUser()
+
+//3
+async function thirdQueryToUser(){
+    try{
+        const user = await UserModal.where("name").equals("Kyle").limit(2).select("age")
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// thirdQueryToUser()
+
+//4
+async function fourthQueryToUser(){
+    try{
+        const user = await UserModal.where("name")
+        .gt(12)
+        .where("name")
+        .equals("Kyle")
+        .limit(1)
+        .select("age")
+        user[0].bestFriend = "6382503a4d120704d6a688af"
+        await user[0].save()
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// fourthQueryToUser()
+
+//5
+async function fifthQueryToUser(){
+    try{
+        const user = await UserModal.where("name")
+        .gt(12)
+        .where("name")
+        .equals("Kyle")
+        .populate("bestFriend")
+        .limit(1)
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// fifthQueryToUser()
+
+//6
+async function sixthQueryToUser(){
+    try{
+        const user = await UserModal.findOne({name: "Batel"})
+        console.log(user);
+        user.sayHi()
+    }catch(e){console.log(e.message)};
+}
+// sixthQueryToUser()
+
+//7
+async function seventhQueryToUser(){
+    try{
+        const user = await UserModal.ByName("batel")
+        console.log(user);
+    }catch(e){console.log(e.message)};
+}
+// seventhQueryToUser()
+
+//8
+async function eighthQueryToUser(){
+    try{
+        const user = await UserModal.findOne({ name: "Kyle", email: "test@test.com"})
+        console.log(user)
+        console.log(user.nameEmail)
+    }catch(e){console.log(e.message)};
+}
+eighthQueryToUser()
